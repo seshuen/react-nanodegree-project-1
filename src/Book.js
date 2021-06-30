@@ -20,7 +20,7 @@ const Book = (props) => {
           <div className="book-shelf-changer">
             <select
               onChange={(event) =>
-                this.props.handleBookShelfChange(book, event.target.value)
+                props.handleBookShelfChange(book, event.target.value)
               }
               value={book.shelf}
             >

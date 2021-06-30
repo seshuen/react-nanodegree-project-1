@@ -2,7 +2,7 @@ import React from "react";
 import * as BooksAPI from "./BooksAPI";
 import BookShelf from "./BookShelf";
 import Search from "./Search";
-import { Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 
 class BooksApp extends React.Component {
@@ -36,50 +36,52 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        <Route
-          path="/search"
-          render={() => (
-            <Search handleBookShelfChange={this.handleBookShelfChange} />
-          )}
-        />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <div className="list-books">
-              <div className="list-books-title">
-                <h1>MyReads</h1>
-              </div>
-              <div className="list-books-content">
-                <div>
-                  <BookShelf
-                    shelf="currentlyReading"
-                    shelfTitle="Currently Reading"
-                    books={this.state.books}
-                    handleBookShelfChange={this.handleBookShelfChange}
-                  />
-                  <BookShelf
-                    shelf="wantToRead"
-                    shelfTitle="Want to Read"
-                    books={this.state.books}
-                    handleBookShelfChange={this.handleBookShelfChange}
-                  />
-                  <BookShelf
-                    shelf="read"
-                    shelfTitle="Read"
-                    books={this.state.books}
-                    handleBookShelfChange={this.handleBookShelfChange}
-                  />
+      <Router>
+        <div className="app">
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <div className="list-books">
+                <div className="list-books-title">
+                  <h1>MyReads</h1>
+                </div>
+                <div className="list-books-content">
+                  <div>
+                    <BookShelf
+                      shelf="currentlyReading"
+                      shelfTitle="Currently Reading"
+                      books={this.state.books}
+                      handleBookShelfChange={this.handleBookShelfChange}
+                    />
+                    <BookShelf
+                      shelf="wantToRead"
+                      shelfTitle="Want to Read"
+                      books={this.state.books}
+                      handleBookShelfChange={this.handleBookShelfChange}
+                    />
+                    <BookShelf
+                      shelf="read"
+                      shelfTitle="Read"
+                      books={this.state.books}
+                      handleBookShelfChange={this.handleBookShelfChange}
+                    />
+                  </div>
+                </div>
+                <div className="open-search">
+                  <Link to="/search">Add a book</Link>
                 </div>
               </div>
-              <div className="open-search">
-                <Link to="/search">Add a book</Link>
-              </div>
-            </div>
-          )}
-        />
-      </div>
+            )}
+          />
+          <Route
+            path="/search"
+            render={() => (
+              <Search handleBookShelfChange={this.handleBookShelfChange} />
+            )}
+          />
+        </div>
+      </Router>
     );
   }
 }
