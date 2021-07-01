@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 class Search extends Component {
   static propTypes = {
     handleBookShelfChange: PropTypes.func.isRequired,
+    shelfBooks: PropTypes.array.isRequired,
   };
 
   state = {
@@ -57,6 +58,7 @@ class Search extends Component {
             <ol className="books-grid">
               <Books
                 books={this.state.books}
+                shelfBooks={this.props.shelfBooks}
                 handleBookShelfChange={this.props.handleBookShelfChange}
               />
             </ol>

@@ -4,11 +4,11 @@ import Book from "./Book";
 
 class Books extends Component {
   /*
-   * TODO: Create stateless component for book
-   * TODO: Validate shelf value
+   * This is a stateless Books collection component
    */
   static propTypes = {
     books: PropTypes.array.isRequired,
+    shelfBooks: PropTypes.array,
     handleBookShelfChange: PropTypes.func.isRequired,
   };
 
@@ -19,6 +19,7 @@ class Books extends Component {
           <Book
             key={book.id}
             book={book}
+            shelfBooks={this.props.shelfBooks}
             handleBookShelfChange={this.props.handleBookShelfChange}
           />
         ))}

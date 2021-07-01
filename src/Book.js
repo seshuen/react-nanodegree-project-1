@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 
 // Create Stateless component
 const Book = (props) => {
+  /*
+   * TODO: Fix the search without shelf property
+   */
   const book = props.book;
+  const hasShelf =
+    props.shelfBooks &&
+    props.shelfBooks.filter((shelfBook) => shelfBook.id === book.id);
+
   const bookCover = book.imageLinks
     ? book.imageLinks.thumbnail
     : "https://via.placeholder.com/128x193.png?text=No%20Book%20Cover";
@@ -24,7 +31,13 @@ const Book = (props) => {
               onChange={(event) =>
                 props.handleBookShelfChange(book, event.target.value)
               }
-              value={book.shelf}
+              value={
+                book.shelf || hasShelf.length > 0
+                  ? book.shelf
+                    ? book.shelf
+                    : hasShelf[0].shelf
+                  : "none"
+              }
             >
               <option value="move" disabled>
                 Move to...
@@ -47,6 +60,7 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  shelfBooks: PropTypes.array,
   handleBookShelfChange: PropTypes.func.isRequired,
 };
 

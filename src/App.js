@@ -6,13 +6,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 
 class BooksApp extends React.Component {
+  /*
+   * TODO: Convert the state variable to shelves of book id and see if that helps.
+   */
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     books: [],
   };
 
@@ -28,6 +25,10 @@ class BooksApp extends React.Component {
     this.updateBoooks();
   }
 
+  /*
+   * handleBookShelfChange: Function to update shelf value for a given
+   * The function passes down the data from parent to components
+   */
   handleBookShelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf).then((res) => {
       this.updateBoooks();
@@ -77,7 +78,10 @@ class BooksApp extends React.Component {
           <Route
             path="/search"
             render={() => (
-              <Search handleBookShelfChange={this.handleBookShelfChange} />
+              <Search
+                handleBookShelfChange={this.handleBookShelfChange}
+                shelfBooks={this.state.books}
+              />
             )}
           />
         </div>
