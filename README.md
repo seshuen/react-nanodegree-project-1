@@ -2,7 +2,7 @@
 
 This is the final assessment project for Udacity's React Fundamentals course. The project consist of two major component with few sub components.
 
-1. Main page: This page shows list of books as per their shelf value (`Currently Ready`, `Want to Read`, `Read`).
+1. Main page: The main page shows 3 shelves for books. Each book is shown on the correct shelf, along with its title and all of its authors.
 2. Search: Here you can search the books by their title or author name.
 
 The project was built over [Udacity's starter template](https://github.com/udacity/reactnd-project-myreads-starter).
