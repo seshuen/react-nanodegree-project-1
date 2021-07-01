@@ -15,13 +15,18 @@ class Search extends Component {
   };
 
   getSearchResult = (searchTerm) => {
-    searchTerm !== "" &&
-      BooksAPI.search(searchTerm, 20).then((books) => {
-        this.setState(() => ({
+    // Currently we are showing only 20 results given search results are capped at 20
+    searchTerm !== ""
+      ? BooksAPI.search(searchTerm, 20).then((books) => {
+          this.setState(() => ({
+            searchText: searchTerm,
+            books: books,
+          }));
+        })
+      : this.setState(() => ({
           searchText: searchTerm,
-          books: books,
+          books: [],
         }));
-      });
   };
 
   render() {
